@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.MPE;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,12 +28,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
 
         {
-            
-            Vector3 targetDir = Input.mousePosition - transform.position;
-            Quaternion projectileRotation = transform.rotation;
-            projectileRotation.z = Vector3.Angle(targetDir, Vector3.up);
 
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
+            Vector3 targetDirection = (Input.mousePosition - transform.position).normalized;
+            Quaternion projectileRotation = Quaternion.Euler(targetDirection);
+          
+
+            Instantiate(projectilePrefab, transform.position, projectileRotation);
         }
 
     }

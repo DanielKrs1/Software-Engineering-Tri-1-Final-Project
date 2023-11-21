@@ -18,5 +18,9 @@ public class DestroyOutOfBounds : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (transform.position.x > rightBound || transform.position.x < leftBound)
+        {
+            Destroy(gameObject);
+        }
     }
 }

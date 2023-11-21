@@ -135,6 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upBound: 3
-  downBound: 3
-  leftBound: 3
+  downBound: -3
+  leftBound: -3
   rightBound: 3
