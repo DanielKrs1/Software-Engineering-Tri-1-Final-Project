@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
             Vector3 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
             
+            //do some trig
             Vector3 targetDir = mousePosition - transform.position;
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
-            print(angle);
             Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0f, 0f, angle));
         }
 
