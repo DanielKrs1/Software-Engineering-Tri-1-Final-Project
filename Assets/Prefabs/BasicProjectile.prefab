@@ -166,11 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afba6faed122fe0488759f69cf19fa45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  upBound: 3
-  downBound: -3
-  leftBound: -3
-  rightBound: 3
-=======
-  destroyTime: 10
->>>>>>> c5f3fe67e40f8d3f1fd3d4a8770ed1a2a380d21e
+  destroyTime: 7

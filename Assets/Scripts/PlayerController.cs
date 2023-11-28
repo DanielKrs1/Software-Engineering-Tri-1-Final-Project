@@ -7,36 +7,91 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     private new Camera camera;
+    private float distanceFromLeft = -6;
+
+
+    private float speedMultiplier = 5;
+
+    private float upperBorder = 4;
+    private float lowerBorder = -4;
+
+    private float leftBorder = -7;
+    private float rightBorder = -5;
+
+    private float lastFireTime = 0;
+    private float cooldownTime = 0.75f;
 
     // Start is called before the first frame update
 
+
     public GameObject projectilePrefab;
+  
+
     void Start()
     {
+
         camera = Camera.main;
+        transform.position = new Vector3(distanceFromLeft, 0, 0);
     }
 
     // Update is called once per frame
+    void setPositionX(float newX)
+    {
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+    }
+
+    void setPositionY(float newY)
+    {
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+    }
+
+    void setPositionZ(float newZ)
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
+    }
+
+    bool canFire()
+    {
+        return Time.time - cooldownTime > lastFireTime;
+    }
     void Update()
     {
-
+        // Movement input 
 
         float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * Time.deltaTime * horizontalInput);
+       
+        transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speedMultiplier);
+
+        if (transform.position.x > rightBorder)
+        {
+            setPositionX(rightBorder);
+        }
+        if (transform.position.x < leftBorder)
+        {
+            setPositionX(leftBorder);
+        }
+
 
         float verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.up * Time.deltaTime * verticalInput);
+       
+        transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speedMultiplier);
+        
 
-        if (Input.GetMouseButtonDown(0))
+        if (transform.position.y > upperBorder)
         {
-<<<<<<< HEAD
+            setPositionY(upperBorder);
+        }
+        if (transform.position.y < lowerBorder)
+        {
+            setPositionY(lowerBorder);
+        }
+        // 
 
-            Vector3 targetDirection = (Input.mousePosition - transform.position).normalized;
-            Quaternion projectileRotation = Quaternion.Euler(targetDirection);
-          
 
-            Instantiate(projectilePrefab, transform.position, projectileRotation);
-=======
+        // Projectile creation
+
+        if (Input.GetMouseButtonDown(0) && canFire())
+        {
             Vector3 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
             
@@ -44,8 +99,10 @@ public class PlayerController : MonoBehaviour
             Vector3 targetDir = mousePosition - transform.position;
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
             Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0f, 0f, angle));
->>>>>>> c5f3fe67e40f8d3f1fd3d4a8770ed1a2a380d21e
+            lastFireTime = Time.time;
         }
+
+        //
 
     }
     
