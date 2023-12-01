@@ -15,6 +15,8 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton pattern - keep only one copy of data
+        // TODO: Unit test
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -28,6 +30,7 @@ public class DataManager : MonoBehaviour
 
     private void Update()
     { // TODO: Replace with a more proper solution
+      // TODO: Unit test
         if (distance < maxDist) distance += scrollSpeed * Time.deltaTime;
         if (distance > maxDist) distance = maxDist;
     }
