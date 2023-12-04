@@ -24,19 +24,19 @@ public class AppearWhenProgressBarIsFull : MonoBehaviour
     {
         if (progressBar.isFull() && isOnScreen == false)
         {
-            StartCoroutine(objectAppears());
+            StartCoroutine("objectAppears");
             isOnScreen = true;
         }
 
     }
     IEnumerator objectAppears()
     {
-        if (transform.position.x > endingX)
+        while (transform.position.x > endingX)
         {
             transform.Translate(Vector3.left * Time.deltaTime * wallSpeed, Space.World);
-            
+            yield return null;
         }
-        return null;
+        
     }
     void resetPosition()
     {

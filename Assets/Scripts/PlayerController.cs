@@ -19,12 +19,15 @@ public class PlayerController : MonoBehaviour
     private float rightBorder = -5;
 
     private float lastFireTime = 0;
-    private float cooldownTime = 0.75f;
+   
 
     // Start is called before the first frame update
 
 
     public GameObject projectilePrefab;
+    public PlayerStatistics playerStatistics;
+
+    public CooldownManager cooldown;
   
 
     void Start()
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
         camera = Camera.main;
         transform.position = new Vector3(distanceFromLeft, 0, 0);
+        
     }
 
     // Update is called once per frame
@@ -50,10 +54,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
 
-    bool canFire()
-    {
-        return Time.time - cooldownTime > lastFireTime;
-    }
+   
     void Update()
     {
         // Movement input 
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         // Projectile creation
 
-        if (Input.GetMouseButtonDown(0) && canFire())
+        if (Input.GetMouseButtonDown(0) && cooldown.canFire())
         {
             Vector3 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour
             Vector3 targetDir = mousePosition - transform.position;
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
             Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0f, 0f, angle));
-            lastFireTime = Time.time;
+            cooldown.resetCooldown();
         }
 
         //
