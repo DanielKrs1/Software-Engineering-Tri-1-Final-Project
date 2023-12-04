@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.MPE;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -54,7 +55,10 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
 
-   
+    void thisDiesLikeThisThingDiesActuallyNow()
+    {
+        SceneManager.LoadScene("GameOverScreen");
+    }
     void Update()
     {
         // Movement input 
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y > upperBorder)
         {
+            thisDiesLikeThisThingDiesActuallyNow();
             setPositionY(upperBorder);
         }
         if (transform.position.y < lowerBorder)

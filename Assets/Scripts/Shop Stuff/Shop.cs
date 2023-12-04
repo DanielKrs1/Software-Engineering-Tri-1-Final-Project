@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TMPro;
+// using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +19,7 @@ public class Shop : MonoBehaviour {
         foreach (Button button in buttons) {
             Upgrade upgrade = GetUnusedUpgrade();
             shopUpgrades.Add(button, upgrade);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage();
+            // button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage();
         }
     }
 
