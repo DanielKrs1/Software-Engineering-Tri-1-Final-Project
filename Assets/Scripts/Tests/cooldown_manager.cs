@@ -15,7 +15,6 @@ public class cooldown_manager
         playerStatistics.projectileCooldownTime = 1f;
 
         CooldownManager cooldown = new CooldownManager();
-        cooldown.playerStatistics = playerStatistics;
         cooldown.resetCooldown();
         Assert.IsFalse(cooldown.canFire());
     }
@@ -28,7 +27,6 @@ public class cooldown_manager
         playerStatistics.projectileCooldownTime = 1f;
 
         CooldownManager cooldown = new CooldownManager();
-        cooldown.playerStatistics = playerStatistics;
         cooldown.resetCooldown();
         waitToCheck(cooldown);
         

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class LevelDisplay : MonoBehaviour
 {
     public Text levelTextBox;
-    public PlayerStatistics playerStatistics;
     void Start()
     {
 
@@ -15,6 +14,6 @@ public class LevelDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        levelTextBox.text = "Level " + playerStatistics.levelNumber;
+        levelTextBox.text = "Level " + PlayerStatistics.instance.levelNumber;
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class CooldownManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public PlayerStatistics playerStatistics;
     Renderer ren;
     public Color ableToFireColor = new Vector4(0, 0.75f, 0.25f, 1);
     public Color unableToFireColor = new Vector4(1, 0.25f, 0, 1);
@@ -19,7 +18,7 @@ public class CooldownManager : MonoBehaviour
 
     public bool canFire()
     {
-        return Time.time - playerStatistics.projectileCooldownTime > lastFireTime;
+        return Time.time - PlayerStatistics.instance.projectileCooldownTime > lastFireTime;
     }
 
     // Update is called once per frame

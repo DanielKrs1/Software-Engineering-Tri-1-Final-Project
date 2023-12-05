@@ -7,7 +7,6 @@ public class HealthDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text healthTextBox;
-    public PlayerStatistics playerStatistics;
     void Start()
     {
         
@@ -16,6 +15,6 @@ public class HealthDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthTextBox.text = "" + playerStatistics.currentHealth + "/" + playerStatistics.maxHealth;
+        healthTextBox.text = "" + PlayerStatistics.instance.currentHealth + "/" +  PlayerStatistics.instance.maxHealth;
     }
 }
