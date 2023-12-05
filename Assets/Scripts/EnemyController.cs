@@ -38,10 +38,11 @@ public class EnemyController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        // If hit the player, deal damage
+        // If hit the player, deal damage and die
         if (collision.gameObject.CompareTag("Player"))
         {
-            // idk do damage somehow
+            PlayerStatistics.instance.loseHealth(EnemyData.ContactDamage);
+            Destroy(gameObject);
         }
     }
     public void TakeDamage(int damage)
@@ -60,7 +61,7 @@ public class EnemyController : MonoBehaviour
         // Display tooltip and award money
         int reward = Random.Range(EnemyData.MinReward, EnemyData.MaxReward);
         TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.Money, reward, transform.position);
-        DataManager.Instance.AddMoney(reward);
+        PlayerStatistics.instance.changeMoney(reward);
         // Get smaller and smaller
         for (int i = 0; i < 10; i++)
         {

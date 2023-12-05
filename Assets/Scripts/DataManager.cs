@@ -12,8 +12,6 @@ public class DataManager : MonoBehaviour
     public float maxDist = 100; // TODO: replace with more proper solution
     public float scrollSpeed = 10;
     public float leftBound = -15;
-    public int money = 0;
-
     private void Awake()
     {
         // Singleton pattern - keep only one copy of data
@@ -34,10 +32,5 @@ public class DataManager : MonoBehaviour
       // TODO: Unit test
         if (distance < maxDist) distance += scrollSpeed * Time.deltaTime;
         if (distance > maxDist) distance = maxDist;
-    }
-
-    public void AddMoney(int amount)
-    {
-        money += amount;
     }
 }
