@@ -25,6 +25,7 @@ public class Shop : MonoBehaviour
             Upgrade upgrade = GetUnusedUpgrade();
             shopUpgrades.Add(button, upgrade);
             button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage();
+            button.onClick.AddListener(delegate { upgrade.Apply();});
         }
     }
 
