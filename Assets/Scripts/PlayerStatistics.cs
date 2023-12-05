@@ -38,6 +38,17 @@ public class PlayerStatistics : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void wakeUp()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -47,10 +58,27 @@ public class PlayerStatistics : MonoBehaviour
     void changeHealth(int additionalHealth)
     {
         currentHealth += additionalHealth;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
 
     }
+    public void healHealth(int healthHealed)
+    {
+        changeHealth(healthHealed);
+    }
 
-
+    public void setStartingHealth(int startingHealth)
+    {
+     
+        currentHealth = startingHealth;
+    }
+    public void setStartingMaxHealth(int startingHealth)
+    {
+        maxHealth = startingHealth;
+        
+    }
     public void loseHealth(int healthLost)
     {
         changeHealth(-healthLost);

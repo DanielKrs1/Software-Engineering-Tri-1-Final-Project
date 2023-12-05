@@ -11,8 +11,10 @@ public class cooldown_manager
     public void cooldown_cannot_fire_immediately()
     {
         PlayerStatistics playerStatistics = new PlayerStatistics();
+        playerStatistics.wakeUp();
 
-        playerStatistics.projectileCooldownTime = 1f;
+
+        PlayerStatistics.instance.projectileCooldownTime = 1f;
 
         CooldownManager cooldown = new CooldownManager();
         cooldown.resetCooldown();
@@ -23,8 +25,10 @@ public class cooldown_manager
     public void cooldown_can_fire_after_cooldown_time()
     {
         PlayerStatistics playerStatistics = new PlayerStatistics();
+        playerStatistics.wakeUp();
 
-        playerStatistics.projectileCooldownTime = 1f;
+
+        PlayerStatistics.instance.projectileCooldownTime = 1f;
 
         CooldownManager cooldown = new CooldownManager();
         cooldown.resetCooldown();
