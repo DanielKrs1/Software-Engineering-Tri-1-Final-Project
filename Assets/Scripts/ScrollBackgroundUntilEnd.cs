@@ -11,7 +11,7 @@ public class ScrollBackgroundUntilEnd : MonoBehaviour
     {
         // Get the width for scaling the background
         startPos = transform.position;
-        repeatWidth = GetComponent<BoxCollider2D>().size.x / 2;
+        repeatWidth = GetComponent<BoxCollider2D>().size.x * transform.localScale.x / 2;
     }
 
     // Update is called once per frame

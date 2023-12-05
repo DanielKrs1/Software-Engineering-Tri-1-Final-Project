@@ -29,7 +29,9 @@ public class TooltipManager : MonoBehaviour
     }
     public void DisplayTooltip(TooltipType type, int amount, Vector3 position)
     {
-        GameObject tooltip = Instantiate(TooltipPrefab, position, Quaternion.identity);
+        // Random vector offset for the tooltip
+        Vector3 adjustment = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(0.5f, 1f), 0);
+        GameObject tooltip = Instantiate(TooltipPrefab, position + adjustment, Quaternion.identity);
         TextMeshProUGUI text = tooltip.GetComponent<TextMeshProUGUI>();
         tooltip.transform.SetParent(transform);
         switch (type)
@@ -42,7 +44,7 @@ public class TooltipManager : MonoBehaviour
             case TooltipType.EnemyDamage:
                 text.text = amount.ToString();
                 // Set text color to red
-                text.color = Color.blue;
+                text.color = Color.yellow;
                 break;
             case TooltipType.Money:
                 text.text = "+" + amount.ToString();

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5141d8f16be075db39b24f3f7cc880, type: 3}
   m_Name: DefaultBehavior
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  ChargeTime: 0
   Cooldown: 0.5
+  ChargeTime: 0
