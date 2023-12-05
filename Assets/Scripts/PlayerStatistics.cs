@@ -1,25 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerStatistics : MonoBehaviour
 
 {
     // Start is called before the first frame update
+
     public static PlayerStatistics instance { get; private set; }
-    public int maxHealth { get; private set; }
-    public int currentHealth { get; private set; }
-    public int currentMoney { get; private set; }
+    public  int maxHealth { get; private set; }
+    public  int currentHealth { get; private set; }
+    public  int currentMoney { get; private set; }
 
     public float projectileCooldownTime { get; set; }
+
+    public int levelNumber { get; private set; }
 
 
     void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
         projectileCooldownTime = 0.75f;
-        maxHealth = 100;
+        maxHealth = 5;
         currentHealth = maxHealth;
-        currentMoney = 100;
+        currentMoney = 5;
+        levelNumber = 1;
     }
 
     // Update is called once per frame
@@ -34,16 +47,18 @@ public class PlayerStatistics : MonoBehaviour
         
     }
 
-    void loseHealth(int healthLost)
+
+    public void loseHealth(int healthLost)
     {
         changeHealth(-healthLost);
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            
         }
     }
 
-    void changeMoney(int additionalMoney)
+    public void changeMoney(int additionalMoney)
     {
         currentHealth += additionalMoney;
 

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private new Camera camera;
     private float distanceFromLeft = -6;
 
-
+    private bool canControl = false;
     private float speedMultiplier = 5;
 
     private float upperBorder = 4;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private float leftBorder = -7;
     private float rightBorder = -5;
 
-    private float lastFireTime = 0;
+   
    
 
     // Start is called before the first frame update
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
         camera = Camera.main;
         transform.position = new Vector3(distanceFromLeft, 0, 0);
+        canControl = true;
         
     }
 
@@ -59,32 +60,65 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene("GameOverScreen");
     }
+
+    public void getHurt()
+    {
+        playerStatistics.loseHealth(1);
+    }
+    public void finishLevel()
+    {
+        StartCoroutine("goToShop");
+    }
+
+    IEnumerator goToShop()
+    {
+        canControl = false;
+        float startX = transform.position.x;
+        float startY = transform.position.y;
+        float endX = 9f;
+        float endY = 0f;
+
+        float numberOfIncrements = 500;
+
+        for (int i = 0; i < numberOfIncrements; i++)
+        {
+            setPositionX(startX + (endX - startX) * i / numberOfIncrements);
+            setPositionY(startY + (endY - startY) * i / numberOfIncrements);
+            yield return null;
+        }
+    }
     void Update()
     {
         // Movement input 
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-       
-        transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speedMultiplier);
-
-        if (transform.position.x > rightBorder)
-        {
-            setPositionX(rightBorder);
-        }
-        if (transform.position.x < leftBorder)
-        {
-            setPositionX(leftBorder);
-        }
-
-
-        float verticalInput = Input.GetAxis("Vertical");
-       
-        transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speedMultiplier);
-        
-
-        if (transform.position.y > upperBorder)
+        if (playerStatistics.currentHealth <= 0)
         {
             thisDiesLikeThisThingDiesActuallyNow();
+        }
+
+        if (canControl == true)
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+
+            transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speedMultiplier);
+
+            if (transform.position.x > rightBorder)
+            {
+                setPositionX(rightBorder);
+            }
+            if (transform.position.x < leftBorder)
+            {
+                setPositionX(leftBorder);
+            }
+
+
+            float verticalInput = Input.GetAxis("Vertical");
+
+            transform.Translate(Vector3.up * Time.deltaTime * verticalInput * speedMultiplier);
+
+        }
+        if (transform.position.y > upperBorder)
+        {
+            finishLevel();
             setPositionY(upperBorder);
         }
         if (transform.position.y < lowerBorder)
@@ -92,6 +126,10 @@ public class PlayerController : MonoBehaviour
             setPositionY(lowerBorder);
         }
         // 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            getHurt();
+        }
 
 
         // Projectile creation
