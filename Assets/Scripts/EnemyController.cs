@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
         // Do repeating attack if exists
         if (Attacks.Cooldown > 0)
         {
-            InvokeRepeating("RepeatedAttack", Attacks.Cooldown, Attacks.Cooldown);
+            InvokeRepeating("RepeatedAttack", Attacks.FirstCooldown, Attacks.Cooldown);
         }
         // Initiate charged attack if exists
         if (Attacks.ChargeTime > 0)

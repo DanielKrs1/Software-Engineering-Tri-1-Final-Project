@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class AttackBehavior : ScriptableObject
 {
     public float Cooldown;
+    public float FirstCooldown;
     public virtual void RepeatedAttack(GameObject me) {}
     public float ChargeTime;
     public virtual void ChargedAttack(GameObject me) {}

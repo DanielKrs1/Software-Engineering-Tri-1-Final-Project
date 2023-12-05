@@ -1408,6 +1408,7 @@ MonoBehaviour:
   EasyEnemies:
   - {fileID: 268904484697764739, guid: ab786831f06f29333be47998f4ce8d17, type: 3}
   HardEnemies:
+  - {fileID: 268904484697764739, guid: ff1da2ca79a1db8bcb3b9eb70393d3a6, type: 3}
   - {fileID: 268904484697764739, guid: e2f841f8b86f35e0083c209821b7600e, type: 3}
   SpawnX: 15
   SpawnYRange: 5

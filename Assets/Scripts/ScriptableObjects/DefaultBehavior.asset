@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: DefaultBehavior
   m_EditorClassIdentifier: 
   Cooldown: 0.5
+  FirstCooldown: 0.5
   ChargeTime: 0

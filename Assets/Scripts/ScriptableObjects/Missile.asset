@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fb551e0633986499a6ed51d4cec60dd, type: 3}
-  m_Name: BigDebris
+  m_Name: Missile
   m_EditorClassIdentifier: 
-  HealthScaling: 35
-  MinReward: 40
-  MaxReward: 50
-  ContactDamage: 40
-  Sprite: {fileID: 21300000, guid: d7121c2c058c7857d88c610a1fde198a, type: 3}
-  RotateRandomly: 1
+  HealthScaling: 8
+  MinReward: 30
+  MaxReward: 40
+  ContactDamage: 25
+  Sprite: {fileID: 21300000, guid: afe9e95d63d8fa3f1bbacca61a75217d, type: 3}
+  RotateRandomly: 0
