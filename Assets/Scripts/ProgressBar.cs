@@ -12,10 +12,7 @@ public class ProgressBar : MonoBehaviour
     {
         slider = gameObject.GetComponent<Slider>();
     }
-    public bool isFull()
-    {
-        return slider.value == 1;
-    }
+
     // Update is called once per frame
     void Update()
     {

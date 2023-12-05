@@ -101,8 +101,8 @@ public class PlayerController : MonoBehaviour
 
             transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speedMultiplier);
 
-            if (transform.position.x > rightBorder)
-            {
+            if (transform.position.x > rightBorder && !DataManager.Instance.reachedEnd)
+            { // Allow player to move right if they have reached the end of the level
                 setPositionX(rightBorder);
             }
             if (transform.position.x < leftBorder)

@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void Spawn()
     {
-        if (DataManager.Instance.distance < DataManager.Instance.maxDist)
+        if (!DataManager.Instance.reachedEnd)
             Instantiate(prefab, new Vector3(25, Random.Range(-3.0f, 3.0f), 0), Quaternion.identity);
     }
 }

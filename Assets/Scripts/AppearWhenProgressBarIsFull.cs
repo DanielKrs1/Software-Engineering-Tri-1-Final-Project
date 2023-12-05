@@ -22,7 +22,7 @@ public class AppearWhenProgressBarIsFull : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (progressBar.isFull() && isOnScreen == false)
+        if (DataManager.Instance.reachedEnd && isOnScreen == false)
         {
             StartCoroutine("objectAppears");
             isOnScreen = true;
