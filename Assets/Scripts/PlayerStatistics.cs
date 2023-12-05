@@ -19,7 +19,7 @@ public class PlayerStatistics : MonoBehaviour
     public int levelNumber { get; set; }
 
 
-    void Awake()
+    protected void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -35,7 +35,8 @@ public class PlayerStatistics : MonoBehaviour
         currentHealth = maxHealth;
         currentMoney = 5;
         levelNumber = 1;
-        DontDestroyOnLoad(gameObject);
+        if (Application.isPlaying)
+            DontDestroyOnLoad(gameObject);
     }
 
     public void wakeUp()
@@ -71,13 +72,13 @@ public class PlayerStatistics : MonoBehaviour
 
     public void setStartingHealth(int startingHealth)
     {
-     
+
         currentHealth = startingHealth;
     }
     public void setStartingMaxHealth(int startingHealth)
     {
         maxHealth = startingHealth;
-        
+
     }
     public void loseHealth(int healthLost)
     {

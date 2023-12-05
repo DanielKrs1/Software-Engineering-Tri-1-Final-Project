@@ -7,19 +7,21 @@ using UnityEngine.TestTools;
 public class level_system
 {
     SpawnerDummy enemySpawner;
-    PlayerStatistics playerStatistics;
-    DataManager dataManager;
+    StatsDummy playerStatistics;
+    DataDummy dataManager;
 
     [SetUp]
     public void Init()
     {
         GameObject TestManager = new GameObject("Controller");
         // Create singletons
-        TestManager.AddComponent<PlayerStatistics>();
-        playerStatistics = TestManager.GetComponent<PlayerStatistics>();
-        TestManager.AddComponent<DataManager>();
-        dataManager = TestManager.GetComponent<DataManager>();
+        TestManager.AddComponent<StatsDummy>();
+        playerStatistics = TestManager.GetComponent<StatsDummy>();
+        playerStatistics.Init();
 
+        TestManager.AddComponent<DataDummy>();
+        dataManager = TestManager.GetComponent<DataDummy>();
+        dataManager.Init();
         // Set up enemy spawner
         GameObject easy = new GameObject("Easy")
         {
@@ -40,7 +42,7 @@ public class level_system
     [Test]
     public void distance_increases_with_level()
     {
-        Debug.Log(playerStatistics.levelNumber);
+        Debug.Log(dataManager);
         playerStatistics.levelNumber = 1;
         float Level1Distance = dataManager.maxDist;
         playerStatistics.levelNumber = 10;
@@ -65,10 +67,12 @@ public class level_system
     public void health_increases_with_level()
     {
         GameObject FakeEnemy = new GameObject("EnemyDummy");
-        EnemyTemplate dummy = new EnemyTemplate();
         FakeEnemy.AddComponent<EnemyDummy>();
         EnemyDummy testEnemy = FakeEnemy.GetComponent<EnemyDummy>();
+        testEnemy.Attacks = ScriptableObject.CreateInstance<DefaultAttacks>();
 
+        EnemyTemplate dummy = ScriptableObject.CreateInstance<EnemyTemplate>();
+        dummy.Sprite = Resources.Load<Sprite>("test_img");
         testEnemy.EnemyData = dummy;
 
         playerStatistics.levelNumber = 1;
@@ -113,12 +117,10 @@ public class level_system
     [Test]
     public void high_easy_probability_means_easy_enemies()
     {
-
         enemySpawner.EasyProbability = 1.0f;
         enemySpawner.Spawn();
-        Assert.AreEqual("Easy", GameObject.FindGameObjectsWithTag("Test")[0].name);
-        Object.Destroy(GameObject.FindGameObjectsWithTag("Test")[0]);
-
+        GameObject[] list = GameObject.FindGameObjectsWithTag("Test");
+        Assert.AreEqual("Easy(Clone)", list[list.Length - 1].name);
     }
 
     [Test]
@@ -127,9 +129,15 @@ public class level_system
 
         enemySpawner.EasyProbability = 0.0f;
         enemySpawner.Spawn();
-        Assert.AreEqual("Hard", GameObject.FindGameObjectsWithTag("Test")[0].name);
-        Object.Destroy(GameObject.FindGameObjectsWithTag("Test")[0]);
+        GameObject[] list = GameObject.FindGameObjectsWithTag("Test");
+        Assert.AreEqual("Hard(Clone)", list[list.Length - 1].name);
 
+    }
+
+    [TearDown]
+    public void DestroySingleton()
+    { // Need to destroy singleton here since Destroy() doesn't work
+        Object.DestroyImmediate(playerStatistics);
     }
 }
 
@@ -139,6 +147,16 @@ public class EnemyDummy : EnemyController
 }
 
 public class SpawnerDummy : EnemySpawner
+{
+    public void Init() { Awake(); }
+}
+
+public class DataDummy : DataManager
+{
+    public void Init() { Awake(); }
+}
+
+public class StatsDummy : PlayerStatistics
 {
     public void Init() { Awake(); }
 }

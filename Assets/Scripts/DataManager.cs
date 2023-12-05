@@ -12,12 +12,14 @@ public class DataManager : MonoBehaviour
     public float maxDistConst = 100;
     public float scrollSpeedConst = 5;
     public float leftBound = -15;
-    private void Awake()
+    protected void Awake()
     {
         // Singleton pattern - keep only one copy of data
         if (_instance != null && _instance != this)
         {
-            Destroy(this);
+            if (Application.isPlaying)
+                Destroy(this);
+            else DestroyImmediate(this);
         }
         else
         {
