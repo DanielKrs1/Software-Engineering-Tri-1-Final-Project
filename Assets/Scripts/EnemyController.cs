@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
             sprite.transform.Rotate(0, 0, Random.Range(0, 360));
         }
         // Load data from EnemyData, scale health by level
-        Health = EnemyData.HealthScaling * (int) Mathf.Pow(PlayerStatistics.instance.levelNumber,0.4f);
+        Health = EnemyData.HealthScaling * (int)Mathf.Pow(PlayerStatistics.instance.levelNumber, 0.4f);
         // Do repeating attack if exists
         if (Attacks.Cooldown > 0)
         {
@@ -56,13 +56,16 @@ public class EnemyController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        // Display tooltip
-        TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.EnemyDamage, damage, transform.position);
-        Health -= damage;
-        if (Health <= 0)
-        {
-            StartCoroutine(Die(gameObject));
+        if (!Dead)
+        {// Display tooltip
+            TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.EnemyDamage, damage, transform.position);
+            Health -= damage;
+            if (Health <= 0)
+            {
+                StartCoroutine(Die(gameObject));
+            }
         }
+
     }
 
     public IEnumerator Die(GameObject me)
