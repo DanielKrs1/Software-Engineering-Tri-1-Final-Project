@@ -50,11 +50,6 @@ public class PlayerStatistics : MonoBehaviour
             instance = this;
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void changeHealth(int additionalHealth)
     {

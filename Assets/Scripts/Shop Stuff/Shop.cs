@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-// using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +24,7 @@ public class Shop : MonoBehaviour
         {
             Upgrade upgrade = GetUnusedUpgrade();
             shopUpgrades.Add(button, upgrade);
-            // button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage();
+            button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage();
         }
     }
 
