@@ -10,12 +10,12 @@ public class GuidedMissile : AttackBehavior
     {
         // Very fast velocity towards player
         Vector3 dist = GameObject.FindWithTag("Player").transform.position - me.transform.position;
-        me.GetComponent<Rigidbody2D>().velocity = new Vector2(dist.x, dist.y).normalized * 5f;
+        me.GetComponent<Rigidbody2D>().velocity = new Vector2(dist.x, dist.y).normalized * 10f;
     }
     public override void RepeatedAttack(GameObject me)
     { // Continue to pursue player
         Vector3 dist = GameObject.FindWithTag("Player").transform.position - me.transform.position;
-        me.GetComponent<Rigidbody2D>().velocity *= 0.8f;
+        me.GetComponent<Rigidbody2D>().velocity *= 0.9f;
         me.GetComponent<Rigidbody2D>().velocity += new Vector2(dist.x, dist.y).normalized;
     }
 }
