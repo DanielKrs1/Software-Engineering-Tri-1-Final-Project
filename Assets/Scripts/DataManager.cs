@@ -12,6 +12,7 @@ public class DataManager : MonoBehaviour
     public float maxDist = 100; // TODO: replace with more proper solution
     public float scrollSpeed = 10;
     public float leftBound = -15;
+    public int money = 0;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class DataManager : MonoBehaviour
         // TODO: Unit test
         if (_instance != null && _instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(this);
         }
         else
         {
@@ -33,5 +34,10 @@ public class DataManager : MonoBehaviour
       // TODO: Unit test
         if (distance < maxDist) distance += scrollSpeed * Time.deltaTime;
         if (distance > maxDist) distance = maxDist;
+    }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
     }
 }

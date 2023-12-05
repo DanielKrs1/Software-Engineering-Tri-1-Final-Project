@@ -8,9 +8,10 @@ public class EnemyTemplate : ScriptableObject
     public int MaxHealth = 100;
     public int MinReward = 20;
     public int MaxReward = 30;
+    public int ContactDamage = 20;
     public Sprite Sprite;
-    public ScriptableObject AttackBehavior;
-    public ScriptableObject DeathBehavior;
+    // public ScriptableObject AttackBehavior;
+    // public ScriptableObject DeathBehavior;
     public bool RotateRandomly = false;
 
 }
