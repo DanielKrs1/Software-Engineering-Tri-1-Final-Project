@@ -21,7 +21,6 @@ public class ScrollEnemyUntilEnd : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * (speed ?? DataManager.Instance.scrollSpeed));
         }
         // Kill object if it goes off screen
-        // TODO: Unit tests
         if (transform.position.x < DataManager.Instance.leftBound)
         {
             Destroy(gameObject);

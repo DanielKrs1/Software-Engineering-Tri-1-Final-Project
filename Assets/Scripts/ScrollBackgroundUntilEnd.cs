@@ -17,7 +17,6 @@ public class ScrollBackgroundUntilEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Unit test
         // Only move if player hasn't hit the end of the level
         if (DataManager.Instance.distance < DataManager.Instance.maxDist)
         {

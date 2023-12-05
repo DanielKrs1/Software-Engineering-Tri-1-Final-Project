@@ -26,6 +26,7 @@ public class TooltipManager : MonoBehaviour
         {
             _instance = this;
         }
+        DontDestroyOnLoad(gameObject);
     }
     public void DisplayTooltip(TooltipType type, int amount, Vector3 position)
     {

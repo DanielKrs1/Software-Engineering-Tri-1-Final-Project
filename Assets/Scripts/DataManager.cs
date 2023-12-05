@@ -9,13 +9,12 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get { return _instance; } }
 
     public float distance;
-    public float maxDistConst = 100; // TODO: replace with more proper solution
+    public float maxDistConst = 100; 
     public float scrollSpeedConst = 10;
     public float leftBound = -15;
     private void Awake()
     {
         // Singleton pattern - keep only one copy of data
-        // TODO: Unit test
         if (_instance != null && _instance != this)
         {
             Destroy(this);
@@ -25,6 +24,8 @@ public class DataManager : MonoBehaviour
             _instance = this;
         }
         distance = 0;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public float maxDist
@@ -42,8 +43,7 @@ public class DataManager : MonoBehaviour
         }
     }
     private void Update()
-    { // TODO: Replace with a more proper solution
-      // TODO: Unit test
+    { 
         if (distance < maxDist) distance += scrollSpeed * Time.deltaTime;
         if (distance > maxDist) distance = maxDist;
     }
