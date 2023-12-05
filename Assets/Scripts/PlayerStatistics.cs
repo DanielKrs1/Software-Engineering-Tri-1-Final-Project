@@ -30,7 +30,7 @@ public class PlayerStatistics : MonoBehaviour
             instance = this;
         }
         projectileCooldownTime = 0.5f;
-        projectileDamage = 10;
+        projectileDamage = 20;
         maxHealth = 100;
         currentHealth = maxHealth;
         currentMoney = 5;
