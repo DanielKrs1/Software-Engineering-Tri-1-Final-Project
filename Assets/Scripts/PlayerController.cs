@@ -60,10 +60,6 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("GameOverScreen");
     }
 
-    public void getHurt()
-    {
-        PlayerStatistics.instance.loseHealth(1);
-    }
     public void finishLevel()
     {
         StartCoroutine("goToShop");
@@ -124,12 +120,6 @@ public class PlayerController : MonoBehaviour
         {
             setPositionY(lowerBorder);
         }
-        // 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            getHurt();
-        }
-
 
         // Projectile creation
 
