@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     GameObject sprite;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         // Make sprite
         sprite = new GameObject("Sprite");

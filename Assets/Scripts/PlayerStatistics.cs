@@ -16,7 +16,7 @@ public class PlayerStatistics : MonoBehaviour
     public float projectileCooldownTime { get; set; }
     public int projectileDamage { get; set; }
 
-    public int levelNumber { get; private set; }
+    public int levelNumber { get; set; }
 
 
     void Awake()

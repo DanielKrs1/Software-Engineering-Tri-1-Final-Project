@@ -11,9 +11,17 @@ public class EnemySpawner : MonoBehaviour
     public float SpawnYRange = 5.0f;
     public float FirstSpawnTime = 2.0f;
     public float SpawnIntervalConst = 1.0f;
+
+    public float SpawnInterval { get { return SpawnIntervalConst * Mathf.Pow(PlayerStatistics.instance.levelNumber, -0.25f); } }
+    public float EasyProbability = 1.0f;
+
+    protected void Awake()
+    { // Initialize probability of spawning easy enemies - should scale down
+        EasyProbability = Mathf.Pow(PlayerStatistics.instance.levelNumber, -0.2f);
+    }
     void Start()
     { // Spawn faster on later levels
-        InvokeRepeating("Spawn", FirstSpawnTime, SpawnIntervalConst * Mathf.Pow(PlayerStatistics.instance.levelNumber, -0.25f));
+        InvokeRepeating("Spawn", FirstSpawnTime, SpawnInterval);
     }
 
     // Update is called once per frame
@@ -21,14 +29,14 @@ public class EnemySpawner : MonoBehaviour
     {
 
     }
-    void Spawn()
+    public void Spawn()
     {
         if (!DataManager.Instance.reachedEnd)
         { // Don't spawn if the player has reached the end 
 
             // Scale to harder enemies by level
             float randIndex = Random.Range(0.0f, 1.0f);
-            if (randIndex < Mathf.Pow(PlayerStatistics.instance.levelNumber, -0.2f))
+            if (randIndex < EasyProbability)
             {
                 // Spawn easy enemy
                 Instantiate(EasyEnemies[Random.Range(0, EasyEnemies.Length - 1)], new Vector3(SpawnX, Random.Range(-SpawnYRange, SpawnYRange), 0), Quaternion.identity);
