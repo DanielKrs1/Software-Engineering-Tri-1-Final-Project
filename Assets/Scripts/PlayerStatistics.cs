@@ -15,6 +15,8 @@ public class PlayerStatistics : MonoBehaviour
 
     public float projectileCooldownTime { get; set; }
 
+    public int levelNumber { get; private set; }
+
 
     void Awake()
     {
@@ -30,6 +32,7 @@ public class PlayerStatistics : MonoBehaviour
         maxHealth = 5;
         currentHealth = maxHealth;
         currentMoney = 5;
+        levelNumber = 1;
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class PlayerStatistics : MonoBehaviour
         currentHealth += additionalHealth;
         
     }
+
 
     public void loseHealth(int healthLost)
     {
