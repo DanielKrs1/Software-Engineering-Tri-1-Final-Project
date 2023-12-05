@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BigDebris
   m_EditorClassIdentifier: 
   HealthScaling: 35
-  MinReward: 40
-  MaxReward: 50
+  MinReward: 4
+  MaxReward: 5
   ContactDamage: 40
   Sprite: {fileID: 21300000, guid: d7121c2c058c7857d88c610a1fde198a, type: 3}
   RotateRandomly: 1

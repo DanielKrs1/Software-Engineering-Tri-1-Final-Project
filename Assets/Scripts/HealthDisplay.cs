@@ -15,6 +15,6 @@ public class HealthDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthTextBox.text = "" + PlayerStatistics.instance.currentHealth + "/" +  PlayerStatistics.instance.maxHealth;
+        healthTextBox.text = "" + PlayerStatistics.instance.currentHealth + "/" +  PlayerStatistics.instance.maxHealth + " HP";
     }
 }

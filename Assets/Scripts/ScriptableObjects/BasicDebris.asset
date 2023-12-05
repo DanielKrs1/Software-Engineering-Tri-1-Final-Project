@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb551e0633986499a6ed51d4cec60dd, type: 3}
   m_Name: BasicDebris
   m_EditorClassIdentifier: 
-  MaxHealth: 10
-  MinReward: 20
-  MaxReward: 30
+  HealthScaling: 20
+  MinReward: 2
+  MaxReward: 3
   ContactDamage: 20
   Sprite: {fileID: 21300000, guid: d7121c2c058c7857d88c610a1fde198a, type: 3}
   RotateRandomly: 1

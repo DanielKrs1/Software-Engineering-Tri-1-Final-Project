@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyTemplate : ScriptableObject
 {
     public int HealthScaling = 20;
-    public int MinReward = 20;
-    public int MaxReward = 30;
+    public int MinReward = 2;
+    public int MaxReward = 3;
     public int ContactDamage = 20;
     public Sprite Sprite;
     // public ScriptableObject AttackBehavior;
