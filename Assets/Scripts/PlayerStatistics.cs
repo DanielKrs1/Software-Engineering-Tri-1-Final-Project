@@ -31,7 +31,7 @@ public class PlayerStatistics : MonoBehaviour
         }
         projectileCooldownTime = 0.5f;
         projectileDamage = 10;
-        maxHealth = 1000;
+        maxHealth = 100;
         currentHealth = maxHealth;
         currentMoney = 5;
         levelNumber = 1;

@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public EnemyTemplate EnemyData;
     public AttackBehavior Attacks;
+    public bool Dead = false;
     private SpriteRenderer _spriteRenderer;
     public int Health { get; set; }
 
@@ -45,8 +46,8 @@ public class EnemyController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        // If hit the player, deal damage and die
-        if (collision.gameObject.CompareTag("Player"))
+        // If hit the player while alive, deal damage and die
+        if (collision.gameObject.CompareTag("Player") && !Dead)
         {
             PlayerStatistics.instance.loseHealth(EnemyData.ContactDamage);
             TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.PlayerDamage, EnemyData.ContactDamage, transform.position);
@@ -66,6 +67,7 @@ public class EnemyController : MonoBehaviour
 
     public IEnumerator Die(GameObject me)
     {
+        Dead = true;
         // Display tooltip and award money
         int reward = Random.Range(EnemyData.MinReward, EnemyData.MaxReward);
         TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.Money, reward, transform.position);

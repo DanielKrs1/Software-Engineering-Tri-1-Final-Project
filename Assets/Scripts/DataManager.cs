@@ -9,8 +9,8 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get { return _instance; } }
 
     public float distance;
-    public float maxDist = 100; // TODO: replace with more proper solution
-    public float scrollSpeed = 10;
+    public float maxDistConst = 100; // TODO: replace with more proper solution
+    public float scrollSpeedConst = 10;
     public float leftBound = -15;
     private void Awake()
     {
@@ -27,6 +27,20 @@ public class DataManager : MonoBehaviour
         distance = 0;
     }
 
+    public float maxDist
+    {
+        get
+        {
+            return maxDistConst * Mathf.Pow(PlayerStatistics.instance.levelNumber, 0.5f);
+        }
+    }
+    public float scrollSpeed
+    {
+        get
+        {
+            return scrollSpeedConst * Mathf.Pow(PlayerStatistics.instance.levelNumber, 0.25f);
+        }
+    }
     private void Update()
     { // TODO: Replace with a more proper solution
       // TODO: Unit test
