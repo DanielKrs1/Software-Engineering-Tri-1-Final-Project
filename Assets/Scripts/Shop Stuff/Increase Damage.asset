@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ca5a486c78f8340adf592b4d1fa62c, type: 3}
   m_Name: Increase Damage
   m_EditorClassIdentifier: 
-  cost: 15
+  price: 10
   damageIncrease: 10

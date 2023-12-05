@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef6736ae374da4da7512967618e01c, type: 3}
   m_Name: Decrease Cooldown
   m_EditorClassIdentifier: 
-  cost: 25
+  price: 10
   percentageDecrease: 0.9
