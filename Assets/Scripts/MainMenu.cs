@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayAgain()
     { // Destroy singletons as game is over
-        Destroy(PlayerStatistics.instance.gameObject);
+        if(PlayerStatistics.instance != null)
+            Destroy(PlayerStatistics.instance.gameObject);
         StartGame();
     }
     public void Exit() => Application.Quit();
