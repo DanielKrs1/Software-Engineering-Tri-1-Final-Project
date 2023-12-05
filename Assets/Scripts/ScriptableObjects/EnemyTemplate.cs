@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/Enemy", order = 1)]
 public class EnemyTemplate : ScriptableObject
 {
-    public int MaxHealth = 100;
+    public int MaxHealth = 20;
     public int MinReward = 20;
     public int MaxReward = 30;
-    public int ContactDamage = 20;
+    public int ContactDamage = 10;
     public Sprite Sprite;
     // public ScriptableObject AttackBehavior;
     // public ScriptableObject DeathBehavior;

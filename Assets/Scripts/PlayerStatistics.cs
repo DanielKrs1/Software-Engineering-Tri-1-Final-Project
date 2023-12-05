@@ -14,6 +14,7 @@ public class PlayerStatistics : MonoBehaviour
     public  int currentMoney { get; private set; }
 
     public float projectileCooldownTime { get; set; }
+    public int projectileDamage {get; set;}
 
     public int levelNumber { get; private set; }
 
@@ -28,8 +29,9 @@ public class PlayerStatistics : MonoBehaviour
         {
             instance = this;
         }
-        projectileCooldownTime = 0.75f;
-        maxHealth = 5;
+        projectileCooldownTime = 0.5f;
+        projectileDamage = 10;
+        maxHealth = 1000;
         currentHealth = maxHealth;
         currentMoney = 5;
         levelNumber = 1;

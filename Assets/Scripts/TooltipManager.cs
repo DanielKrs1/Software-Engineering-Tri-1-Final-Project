@@ -9,7 +9,8 @@ public class TooltipManager : MonoBehaviour
     public static TooltipManager Instance { get { return _instance; } }
     public enum TooltipType
     {
-        Damage,
+        EnemyDamage,
+        PlayerDamage,
         Money
     }
     public GameObject TooltipPrefab;
@@ -29,18 +30,24 @@ public class TooltipManager : MonoBehaviour
     public void DisplayTooltip(TooltipType type, int amount, Vector3 position)
     {
         GameObject tooltip = Instantiate(TooltipPrefab, position, Quaternion.identity);
+        TextMeshProUGUI text = tooltip.GetComponent<TextMeshProUGUI>();
         tooltip.transform.SetParent(transform);
         switch (type)
         {
-            case TooltipType.Damage:
-                tooltip.GetComponent<TextMeshProUGUI>().text = amount.ToString();
+            case TooltipType.PlayerDamage:
+                text.text = "-" + amount.ToString();
                 // Set text color to red
-                tooltip.GetComponent<TextMeshProUGUI>().color = Color.red;
+                text.color = Color.red;
+                break;
+            case TooltipType.EnemyDamage:
+                text.text = amount.ToString();
+                // Set text color to red
+                text.color = Color.blue;
                 break;
             case TooltipType.Money:
-                tooltip.GetComponent<TextMeshProUGUI>().text = "+" + amount.ToString();
+                text.text = "+" + amount.ToString();
                 // Set text color to green
-                tooltip.GetComponent<TextMeshProUGUI>().color = Color.green;
+                text.color = Color.green;
                 break;
         }
     }

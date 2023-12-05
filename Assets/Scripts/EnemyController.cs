@@ -9,17 +9,24 @@ public class EnemyController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     public int Health { get; set; }
 
+    GameObject sprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        // Load data from EnemyData
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        // Make sprite
+        sprite = new GameObject("Sprite");
+        sprite.transform.SetParent(transform);
+        sprite.transform.position = transform.position;
+        sprite.transform.localScale = new Vector3(1f, 1f, 1f);
+        _spriteRenderer = sprite.AddComponent<SpriteRenderer>();
         _spriteRenderer.sprite = EnemyData.Sprite;
-        Health = EnemyData.MaxHealth;
         if (EnemyData.RotateRandomly)
         {
-            transform.Rotate(0, 0, Random.Range(0, 360));
+            sprite.transform.Rotate(0, 0, Random.Range(0, 360));
         }
+        // Load data from EnemyData
+        Health = EnemyData.MaxHealth;
         // Do repeating attack if exists
         if (Attacks.Cooldown > 0)
         {
@@ -42,13 +49,14 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerStatistics.instance.loseHealth(EnemyData.ContactDamage);
+            TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.PlayerDamage, EnemyData.ContactDamage, transform.position);
             Destroy(gameObject);
         }
     }
     public void TakeDamage(int damage)
     {
         // Display tooltip
-        TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.Damage, damage, transform.position);
+        TooltipManager.Instance.DisplayTooltip(TooltipManager.TooltipType.EnemyDamage, damage, transform.position);
         Health -= damage;
         if (Health <= 0)
         {

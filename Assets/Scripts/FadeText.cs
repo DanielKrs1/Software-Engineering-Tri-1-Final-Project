@@ -5,6 +5,7 @@ using TMPro;
 
 public class FadeText : MonoBehaviour
 {
+    public float StayTime = 0.1f;
     public float FadeTime = 1f;
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class FadeText : MonoBehaviour
     // Slowly fade text and then destroy it
     public IEnumerator Fade(TextMeshProUGUI text)
     {
+        yield return new WaitForSeconds(StayTime);
         float time = 0;
         while (time < FadeTime)
         {
