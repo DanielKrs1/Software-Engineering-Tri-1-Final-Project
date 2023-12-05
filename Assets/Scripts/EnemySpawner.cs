@@ -39,12 +39,12 @@ public class EnemySpawner : MonoBehaviour
             if (randIndex < EasyProbability)
             {
                 // Spawn easy enemy
-                Instantiate(EasyEnemies[Random.Range(0, EasyEnemies.Length - 1)], new Vector3(SpawnX, Random.Range(-SpawnYRange, SpawnYRange), 0), Quaternion.identity);
+                Instantiate(EasyEnemies[Random.Range(0, EasyEnemies.Length)], new Vector3(SpawnX, Random.Range(-SpawnYRange, SpawnYRange), 0), Quaternion.identity);
             }
             else
             {
                 // Spawn hard enemy
-                Instantiate(HardEnemies[Random.Range(0, HardEnemies.Length - 1)], new Vector3(SpawnX, Random.Range(-SpawnYRange, SpawnYRange), 0), Quaternion.identity);
+                Instantiate(HardEnemies[Random.Range(0, HardEnemies.Length)], new Vector3(SpawnX, Random.Range(-SpawnYRange, SpawnYRange), 0), Quaternion.identity);
             }
         }
     }
