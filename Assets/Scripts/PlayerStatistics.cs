@@ -67,6 +67,10 @@ public class PlayerStatistics : MonoBehaviour
 
     }
 
+    public void nextLevel()
+    {
+        levelNumber++;
 
+    }
 
 }

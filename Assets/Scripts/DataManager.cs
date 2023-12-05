@@ -24,8 +24,6 @@ public class DataManager : MonoBehaviour
             _instance = this;
         }
         distance = 0;
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public float maxDist

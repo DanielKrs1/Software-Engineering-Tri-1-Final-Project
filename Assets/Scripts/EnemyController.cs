@@ -26,8 +26,8 @@ public class EnemyController : MonoBehaviour
         {
             sprite.transform.Rotate(0, 0, Random.Range(0, 360));
         }
-        // Load data from EnemyData
-        Health = EnemyData.MaxHealth;
+        // Load data from EnemyData, scale health by level
+        Health = EnemyData.HealthScaling * (int) Mathf.Pow(PlayerStatistics.instance.levelNumber,0.4f);
         // Do repeating attack if exists
         if (Attacks.Cooldown > 0)
         {
