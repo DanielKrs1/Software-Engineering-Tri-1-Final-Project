@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce4464e1bb0b404c9408d8072324681, type: 3}
   m_Name: Max Health Increase
   m_EditorClassIdentifier: 
+  cost: 20
   healthIncrease: 5

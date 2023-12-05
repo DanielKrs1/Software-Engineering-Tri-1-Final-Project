@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private Button[] buttons;
     [SerializeField] private Upgrade[] upgrades;
+    [SerializeField] private Text notEnoughMoneyText;
 
     private Dictionary<Button, Upgrade> shopUpgrades;
 
@@ -24,7 +25,8 @@ public class Shop : MonoBehaviour
         {
             Upgrade upgrade = GetUnusedUpgrade();
             shopUpgrades.Add(button, upgrade);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage();
+            button.GetComponentInChildren<TextMeshProUGUI>().text = upgrade.GetShopMessage() + ": \n$" + upgrade.cost;
+            button.onClick.AddListener(() => BuyUpgrade(upgrade));
         }
     }
 
@@ -38,6 +40,18 @@ public class Shop : MonoBehaviour
         } while (shopUpgrades.ContainsValue(upgrade));
 
         return upgrade;
+    }
+
+    private void BuyUpgrade(Upgrade upgrade) {
+        if (PlayerStatistics.instance.currentMoney < upgrade.cost) {
+            notEnoughMoneyText.gameObject.SetActive(true);
+            return;
+        } else {
+            notEnoughMoneyText.gameObject.SetActive(false);
+        }
+
+        PlayerStatistics.instance.changeMoney(-upgrade.cost);
+        upgrade.Apply();
     }
 
     public void NextLevel()
