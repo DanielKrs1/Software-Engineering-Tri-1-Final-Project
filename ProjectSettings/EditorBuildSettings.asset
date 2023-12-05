@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: 1c7fa26e9755fc149a14e2fb2a2a1032
+  - enabled: 1
+    path: Assets/Scenes/sandbox2.unity
+    guid: 72527f24d9d10ef6ba41b6417541f2f7
   m_configObjects: {}

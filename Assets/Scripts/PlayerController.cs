@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
             setPositionY(startY + (endY - startY) * i / numberOfIncrements);
             yield return null;
         }
+        // Put Daniel's Shop Transition here
     }
     void Update()
     {
@@ -118,7 +119,6 @@ public class PlayerController : MonoBehaviour
         }
         if (transform.position.y > upperBorder)
         {
-            finishLevel();
             setPositionY(upperBorder);
         }
         if (transform.position.y < lowerBorder)
