@@ -63,7 +63,7 @@ public class PlayerStatistics : MonoBehaviour
 
     public void changeMoney(int additionalMoney)
     {
-        currentHealth += additionalMoney;
+        currentMoney += additionalMoney;
 
     }
 

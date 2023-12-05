@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
 
     public float distance;
     public float maxDistConst = 100; 
-    public float scrollSpeedConst = 10;
+    public float scrollSpeedConst = 5;
     public float leftBound = -15;
     private void Awake()
     {

@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
 
     public GameObject projectilePrefab;
-    public PlayerStatistics playerStatistics;
 
     public CooldownManager cooldown;
   
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     public void getHurt()
     {
-        playerStatistics.loseHealth(1);
+        PlayerStatistics.instance.loseHealth(1);
     }
     public void finishLevel()
     {
@@ -91,7 +90,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Movement input 
-        if (playerStatistics.currentHealth <= 0)
+        if (PlayerStatistics.instance.currentHealth <= 0)
         {
             thisDiesLikeThisThingDiesActuallyNow();
         }
